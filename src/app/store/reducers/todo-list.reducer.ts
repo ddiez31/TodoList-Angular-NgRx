@@ -24,6 +24,15 @@ export const todosReducer = (
                     ...todosMock // Injecte le mock
                 ]
             };
+        // action AddTodo
+        case TodoListModule.ActionTypes.ADD_TODO:
+            return {
+                ...state,
+                data: [
+                    ...state.data,
+                    action.payload
+                ]
+            };
 
         default:
             return state;
