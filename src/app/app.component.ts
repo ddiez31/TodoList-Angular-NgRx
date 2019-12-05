@@ -1,6 +1,9 @@
-import { OnInit, Component } from '@angular/core';
+import { OnInit, Component, Inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+const uuidv4 = require('uuid/v4');
+
 import { TodoListModule } from './store/actions/todo-list.action';
 import { AppState } from './store';
 import { Todo } from './todos/models/todo';
@@ -13,17 +16,29 @@ import { Todo } from './todos/models/todo';
 export class AppComponent implements OnInit {
   title = 'TodoList-Angular-NgRx';
   todos$: Observable<Todo[]>;
+  public todoForm: FormGroup;
+  private todosLength: number;
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private fb: FormBuilder) {
     this.todos$ = this.store.pipe(select((state) => state.todos.data));
+    this.todoForm = this.fb.group({
+      title: ['', Validators.required],
+      completed: [false, Validators.required]
+    });
   }
 
   ngOnInit(): void {
     this.store.dispatch(new TodoListModule.InitTodos());
   }
 
-  addTodo(): void {
-
+  addTodo(todo: Todo): void {
+    const payload = {
+      ...todo,
+      userId: 1,
+      id: uuidv4()
+    };
+    this.store.dispatch(new TodoListModule.AddTodo(payload));
+    this.todoForm.reset();
   }
 
   showTodo(): void {

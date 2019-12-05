@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MatListModule, MatIconModule, MatInputModule } from '@angular/material';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { getReducers, REDUCER_TOKEN, metaReducers } from './store';
@@ -20,6 +21,8 @@ import { environment } from '../environments/environment';
     MatIconModule,
     MatListModule,
     MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(REDUCER_TOKEN, {
       metaReducers,
