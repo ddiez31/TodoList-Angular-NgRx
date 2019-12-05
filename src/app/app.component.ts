@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { TodoListModule } from './store/actions/todo-list.action';
 import { AppState } from './store';
-import { TodoListState } from './todos/models/todo-list-state';
 import { Todo } from './todos/models/todo';
 
 @Component({
@@ -13,13 +12,30 @@ import { Todo } from './todos/models/todo';
 })
 export class AppComponent implements OnInit {
   title = 'TodoList-Angular-NgRx';
-  todos$: Observable<TodoListState>;
+  todos$: Observable<Todo[]>;
 
   constructor(private store: Store<AppState>) {
-    this.todos$ = this.store.pipe(select('todos'));
+    this.todos$ = this.store.pipe(select((state) => state.todos.data));
   }
 
   ngOnInit(): void {
     this.store.dispatch(new TodoListModule.InitTodos());
   }
+
+  addTodo(): void {
+
+  }
+
+  showTodo(): void {
+
+  }
+
+  deleteTodo(): void {
+
+  }
+
+  completeTodo(): void {
+
+  }
+
 }

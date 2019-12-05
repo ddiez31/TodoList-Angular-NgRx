@@ -1,12 +1,41 @@
 <h1>{{ title }}</h1>
 
-<h1>la todolist redux style !</h1>
+<!-- <h1>la todolist redux style !</h1>
 <ul>
   <li *ngFor="let todo of (todos$ | async)?.data">
     <label>{{ todo.title }}</label>
     <input type="checkbox" [value]="todo.completed" />
     <button>Supprimer</button>
   </li>
-</ul>
+</ul> -->
 
-<router-outlet></router-outlet>
+<button mat-icon-button (click)="addTodo()">Add
+  <mat-icon>add_circle</mat-icon>
+</button>
+
+<form class="form-group">
+  <mat-action-list *ngFor="let todo of todos$ | async">
+    <mat-form-field class="example-full-width">
+      <input matInput [value]="todo.title">
+    </mat-form-field>
+    <button mat-icon-button (click)="showTodo(todo.id)">Infos
+      <mat-icon>info</mat-icon>
+    </button>
+    <button mat-icon-button (click)="deleteTodo(todo.id)">Delete
+      <mat-icon>remove_circle</mat-icon>
+    </button>
+    <button mat-icon-button (click)="completeTodo(todo.id)">Completed
+      <mat-icon *ngIf="todo.completed; else unchecked">check_circle</mat-icon>
+      <ng-template #unchecked>
+        <mat-icon>radio_button_unchecked</mat-icon>
+      </ng-template>
+    </button>
+  </mat-action-list>
+</form>
+
+
+<!-- <p>
+  Options selected: {{todos.selectedOptions.selected.length}}
+</p> -->
+
+<!-- <router-outlet></router-outlet> -->

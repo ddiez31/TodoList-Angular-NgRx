@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatListModule, MatIconModule, MatInputModule } from '@angular/material';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
@@ -16,6 +17,9 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatIconModule,
+    MatListModule,
+    MatInputModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(REDUCER_TOKEN, {
       metaReducers,
