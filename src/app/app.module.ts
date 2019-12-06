@@ -1,6 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatListModule, MatIconModule, MatInputModule } from '@angular/material';
+import {
+  MatListModule,
+  MatIconModule,
+  MatInputModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatTooltipModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -10,10 +18,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { getReducers, REDUCER_TOKEN, metaReducers } from './store';
 import { environment } from '../environments/environment';
+import { ReversePipe } from './pipes/reverse.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
@@ -21,6 +31,10 @@ import { environment } from '../environments/environment';
     MatIconModule,
     MatListModule,
     MatInputModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,

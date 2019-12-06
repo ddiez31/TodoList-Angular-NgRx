@@ -17,13 +17,13 @@ export class AppComponent implements OnInit {
   title = 'TodoList-Angular-NgRx';
   todos$: Observable<Todo[]>;
   public todoForm: FormGroup;
-  private todosLength: number;
 
-  constructor(private store: Store<AppState>, private fb: FormBuilder) {
+  constructor(private store: Store<AppState>, public fb: FormBuilder) {
     this.todos$ = this.store.pipe(select((state) => state.todos.data));
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
-      completed: [false, Validators.required]
+      details: [''],
+      completed: [false]
     });
   }
 
