@@ -45,8 +45,9 @@ export class AppComponent implements OnInit {
 
   }
 
-  deleteTodo(): void {
-
+  deleteTodo(todoId: number): void {
+    const payload = todoId;
+    this.store.dispatch(new TodoListModule.DeleteTodo(payload));
   }
 
   completeTodo(): void {

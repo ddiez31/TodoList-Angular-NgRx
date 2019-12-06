@@ -33,6 +33,12 @@ export const todosReducer = (
                     action.payload
                 ]
             };
+        // action DeleteTodo
+        case TodoListModule.ActionTypes.DELETE_TODO:
+            return {
+                ...state,
+                data: state.data.filter(todo => todo.id !== action.payload)
+            };
 
         default:
             return state;
