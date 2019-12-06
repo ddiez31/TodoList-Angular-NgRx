@@ -44,7 +44,7 @@
 <!-- <form class="form-group"> -->
 <mat-action-list *ngFor="let todo of todos$ | async | reverse" class="todoList">
   <mat-form-field class="title">
-    <input matInput [value]="todo.title">
+    <input matInput [value]="todo.title" readonly>
   </mat-form-field>
   <button mat-icon-button color="basic" (click)="showTodo(todo.id)" class="btnInfos" matTooltip="View details"
     matTooltipPosition="above">
@@ -54,7 +54,7 @@
     matTooltipPosition="above">
     <mat-icon>remove_circle</mat-icon>
   </button>
-  <mat-checkbox class="checkboxCompleted" [checked]="todo.completed" (click)="completeTodo(todo.id)"
+  <mat-checkbox class="checkboxCompleted" [checked]="todo.completed" (change)="completeTodo(todo, $event.checked)"
     labelPosition="before">
     Completed
   </mat-checkbox>
