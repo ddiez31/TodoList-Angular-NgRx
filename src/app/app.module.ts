@@ -1,6 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatListModule, MatIconModule, MatInputModule, MatCheckboxModule, MatFormFieldModule } from '@angular/material';
+import {
+  MatListModule,
+  MatIconModule,
+  MatInputModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatTooltipModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -25,6 +33,8 @@ import { ReversePipe } from './pipes/reverse.pipe';
     MatInputModule,
     MatCheckboxModule,
     MatFormFieldModule,
+    MatButtonModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,

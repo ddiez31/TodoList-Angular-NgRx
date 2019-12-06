@@ -26,40 +26,46 @@
 </ul> -->
 
 
-<form [formGroup]="todoForm" (ngSubmit)="addTodo(todoForm.value)">
-  <mat-form-field floatLabel="auto" class="example-full-width">
+<form [formGroup]="todoForm" (ngSubmit)="addTodo(todoForm.value)" class="formGroup">
+  <mat-form-field floatLabel="auto" class="title">
     <input matInput formControlName="title" placeholder="Title" required>
   </mat-form-field>
-  <mat-form-field floatLabel="auto" class="example-full-width">
+  <mat-form-field floatLabel="auto" class="infos">
     <textarea matInput formControlName="details" placeholder="Description"></textarea>
   </mat-form-field>
-  <mat-checkbox class="example-margin" formControlName="completed" labelPosition="before">
-    Completed?
+  <mat-checkbox class="checkboxCompleted" formControlName="completed" labelPosition="before">
+    Completed
   </mat-checkbox>
-  <button mat-icon-button>Add
+  <button mat-icon-button color="primary" class="btnAdd" matTooltip="Add todo" matTooltipPosition="above">
     <mat-icon>add_circle</mat-icon>
   </button>
 </form>
 
-<form class="form-group">
-  <mat-action-list *ngFor="let todo of todos$ | async | reverse">
-    <mat-form-field class="example-full-width">
-      <input matInput [value]="todo.title">
-    </mat-form-field>
-    <button mat-icon-button (click)="showTodo(todo.id)">Infos
-      <mat-icon>info</mat-icon>
-    </button>
-    <button mat-icon-button (click)="deleteTodo(todo.id)">Delete
-      <mat-icon>remove_circle</mat-icon>
-    </button>
-    <button mat-icon-button (click)="completeTodo(todo.id)">Completed
+<!-- <form class="form-group"> -->
+<mat-action-list *ngFor="let todo of todos$ | async | reverse" class="todoList">
+  <mat-form-field class="title">
+    <input matInput [value]="todo.title">
+  </mat-form-field>
+  <button mat-icon-button color="basic" (click)="showTodo(todo.id)" class="btnInfos" matTooltip="View details"
+    matTooltipPosition="above">
+    <mat-icon>info</mat-icon>
+  </button>
+  <button mat-icon-button color="warn" (click)="deleteTodo(todo.id)" class="btnDelete" matTooltip="delete todo"
+    matTooltipPosition="above">
+    <mat-icon>remove_circle</mat-icon>
+  </button>
+  <mat-checkbox class="checkboxCompleted" [checked]="todo.completed" (click)="completeTodo(todo.id)"
+    labelPosition="before">
+    Completed
+  </mat-checkbox>
+  <!-- <button mat-icon-button color="primary" (click)="completeTodo(todo.id)">Completed
       <mat-icon *ngIf="todo.completed; else unchecked">check_circle</mat-icon>
       <ng-template #unchecked>
         <mat-icon>radio_button_unchecked</mat-icon>
       </ng-template>
-    </button>
-  </mat-action-list>
-</form>
+    </button> -->
+</mat-action-list>
+<!-- </form> -->
 
 
 <!-- <p>
