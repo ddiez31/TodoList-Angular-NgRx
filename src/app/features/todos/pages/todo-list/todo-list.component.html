@@ -1,0 +1,32 @@
+<form [formGroup]="todoForm" (ngSubmit)="addTodo(todoForm.value)" class="formGroup">
+  <mat-form-field floatLabel="auto" class="title">
+    <input matInput formControlName="title" placeholder="Title" required>
+  </mat-form-field>
+  <mat-form-field floatLabel="auto" class="infos">
+    <textarea matInput formControlName="details" placeholder="Description"></textarea>
+  </mat-form-field>
+  <mat-checkbox class="checkboxCompleted" formControlName="completed" labelPosition="before">
+    Completed
+  </mat-checkbox>
+  <button mat-icon-button color="primary" class="btnAdd" matTooltip="Add todo" matTooltipPosition="above">
+    <mat-icon>add_circle</mat-icon>
+  </button>
+</form>
+
+<mat-action-list *ngFor="let todo of todos$ | async | reverse" class="todoList">
+  <mat-form-field class="title">
+    <input matInput [value]="todo.title" readonly>
+  </mat-form-field>
+  <button mat-icon-button color="basic" (click)="showTodo(todo.id)" class="btnInfos" matTooltip="View details"
+    matTooltipPosition="above">
+    <mat-icon>info</mat-icon>
+  </button>
+  <button mat-icon-button color="warn" (click)="deleteTodo(todo.id)" class="btnDelete" matTooltip="Delete todo"
+    matTooltipPosition="above">
+    <mat-icon>remove_circle</mat-icon>
+  </button>
+  <mat-checkbox class="checkboxCompleted" [checked]="todo.completed" (change)="completeTodo(todo, $event.checked)"
+    labelPosition="before">
+    Completed
+  </mat-checkbox>
+</mat-action-list>
