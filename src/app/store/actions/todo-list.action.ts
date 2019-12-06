@@ -6,6 +6,7 @@ export namespace TodoListModule {
     export enum ActionTypes {
         INIT_TODOS = '[todoList] Init Todos',
         ADD_TODO = '[todoList] Add Todo',
+        DELETE_TODO = '[todoList] Delete Todo'
     }
 
     export class InitTodos {
@@ -17,5 +18,10 @@ export namespace TodoListModule {
         constructor(public payload: Todo) { }
     }
 
-    export type Actions = InitTodos | AddTodo;
+    export class DeleteTodo {
+        readonly type = ActionTypes.DELETE_TODO;
+        constructor(public payload: number) { }
+    }
+
+    export type Actions = InitTodos | AddTodo | DeleteTodo;
 }
