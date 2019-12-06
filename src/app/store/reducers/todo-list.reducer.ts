@@ -1,4 +1,4 @@
-import { TodoListModule } from '../actions/todo-list.action';
+import { TodoListModule } from './../actions/todo-list.action';
 import { TodoListState } from './../../todos/models/todo-list-state';
 import { todosMock } from './../../todos/mocks/todo-list';
 
@@ -38,6 +38,13 @@ export const todosReducer = (
             return {
                 ...state,
                 data: state.data.filter(todo => todo.id !== action.payload)
+            };
+        // action CompleteTodo
+        case TodoListModule.ActionTypes.COMPLETE_TODO:
+            return {
+                ...state,
+                data: state.data
+                    .map(todo => todo.id === action.payload.id ? action.payload : todo)
             };
 
         default:

@@ -50,7 +50,18 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new TodoListModule.DeleteTodo(payload));
   }
 
-  completeTodo(): void {
+  completeTodo(todo: Todo, status: boolean): void {
+    console.log(todo.completed);
+    console.log(status);
+    // todo.completed = e.checked;
+    const payload = {
+      ...todo,
+      completed: status,
+      userId: 1,
+      id: todo.id
+    };
+    console.log(payload);
+    this.store.dispatch(new TodoListModule.CompleteTodo(payload));
 
   }
 
