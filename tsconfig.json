@@ -2,6 +2,11 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@Store": ["src/app/store/index.ts"],
+      "@Actions/*": ["src/app/store/actions/*"],
+      "@Reducers/*": ["src/app/store/reducers/*"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,

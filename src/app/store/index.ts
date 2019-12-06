@@ -8,7 +8,7 @@ import {
 import { environment } from './../../environments/environment';
 import { InjectionToken } from '@angular/core';
 
-import { todosReducer } from './reducers/todo-list.reducer';
+import { todosReducer } from '@Reducers/todo-list.reducer';
 import { TodoListState } from '../todos/models/todo-list-state';
 
 // Le root reducer

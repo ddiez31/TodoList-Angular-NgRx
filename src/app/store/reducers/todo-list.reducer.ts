@@ -1,4 +1,4 @@
-import { TodoListModule } from './../actions/todo-list.action';
+import { TodoListModule } from '@Actions/todo-list.action';
 import { TodoListState } from './../../todos/models/todo-list-state';
 import { todosMock } from './../../todos/mocks/todo-list';
 

@@ -1,12 +1,5 @@
-import { OnInit, Component, Inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Store, select } from '@ngrx/store';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-const uuidv4 = require('uuid/v4');
+import { OnInit, Component } from '@angular/core';
 
-import { TodoListModule } from './store/actions/todo-list.action';
-import { AppState } from './store';
-import { Todo } from './todos/models/todo';
 
 @Component({
   selector: 'app-root',
@@ -15,54 +8,12 @@ import { Todo } from './todos/models/todo';
 })
 export class AppComponent implements OnInit {
   title = 'TodoList-Angular-NgRx';
-  todos$: Observable<Todo[]>;
-  public todoForm: FormGroup;
 
-  constructor(private store: Store<AppState>, public fb: FormBuilder) {
-    this.todos$ = this.store.pipe(select((state) => state.todos.data));
-    this.todoForm = this.fb.group({
-      title: ['', Validators.required],
-      details: [''],
-      completed: [false]
-    });
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new TodoListModule.InitTodos());
   }
 
-  addTodo(todo: Todo): void {
-    const payload = {
-      ...todo,
-      userId: 1,
-      id: uuidv4()
-    };
-    this.store.dispatch(new TodoListModule.AddTodo(payload));
-    this.todoForm.reset();
-  }
-
-  showTodo(): void {
-
-  }
-
-  deleteTodo(todoId: number): void {
-    const payload = todoId;
-    this.store.dispatch(new TodoListModule.DeleteTodo(payload));
-  }
-
-  completeTodo(todo: Todo, status: boolean): void {
-    console.log(todo.completed);
-    console.log(status);
-    // todo.completed = e.checked;
-    const payload = {
-      ...todo,
-      completed: status,
-      userId: 1,
-      id: todo.id
-    };
-    console.log(payload);
-    this.store.dispatch(new TodoListModule.CompleteTodo(payload));
-
-  }
 
 }
