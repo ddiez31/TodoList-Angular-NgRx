@@ -7,7 +7,7 @@ const uuidv4 = require('uuid/v4');
 
 import { TodoListModule } from '@Actions/todo-list.action';
 import { AppState } from '@Store';
-import { Todo } from './../../../../todos/models/todo';
+import { Todo } from '../../models/todo';
 
 @Component({
   selector: 'app-todo-list',
@@ -42,8 +42,10 @@ export class TodoListComponent implements OnInit {
     this.todoForm.reset();
   }
 
-  showTodo(todoId: number): void {
-    this.router.navigate([`/todo-details/${todoId}`]);
+  showTodo(todo: Todo): void {
+    const payload = todo;
+    this.store.dispatch(new TodoListModule.SelectedTodo(payload));
+    this.router.navigate([`/todo-details/${todo.id}`]);
   }
 
   deleteTodo(todoId: number): void {

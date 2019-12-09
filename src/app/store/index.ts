@@ -9,7 +9,7 @@ import { environment } from './../../environments/environment';
 import { InjectionToken } from '@angular/core';
 
 import { todosReducer } from '@Reducers/todo-list.reducer';
-import { TodoListState } from '../todos/models/todo-list-state';
+import { TodoListState } from '../features/todos/models/todo-list-state';
 
 // Le root reducer
 export const reducers: ActionReducerMap<AppState> = {
