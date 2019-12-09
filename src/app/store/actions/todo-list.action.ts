@@ -1,4 +1,4 @@
-import { Todo } from './../../todos/models/todo';
+import { Todo } from '../../features/todos/models/todo';
 
 export namespace TodoListModule {
 
@@ -6,7 +6,8 @@ export namespace TodoListModule {
         INIT_TODOS = '[todoList] Init Todos',
         ADD_TODO = '[todoList] Add Todo',
         DELETE_TODO = '[todoList] Delete Todo',
-        COMPLETE_TODO = '[todoList] Complete Todo'
+        COMPLETE_TODO = '[todoList] Complete Todo',
+        SELECTED_TODO = '[todoList] Selected Todo'
     }
 
     export class InitTodos {
@@ -28,5 +29,10 @@ export namespace TodoListModule {
         constructor(public payload: Todo) { }
     }
 
-    export type Actions = InitTodos | AddTodo | DeleteTodo | CompleteTodo;
+    export class SelectedTodo {
+        readonly type = ActionTypes.SELECTED_TODO;
+        constructor(public payload: Todo) { }
+    }
+
+    export type Actions = InitTodos | AddTodo | DeleteTodo | CompleteTodo | SelectedTodo;
 }

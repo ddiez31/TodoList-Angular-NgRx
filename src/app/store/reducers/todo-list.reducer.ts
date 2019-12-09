@@ -1,10 +1,11 @@
 import { TodoListModule } from '@Actions/todo-list.action';
-import { TodoListState } from './../../todos/models/todo-list-state';
-import { todosMock } from './../../todos/mocks/todo-list';
+import { TodoListState } from '../../features/todos/models/todo-list-state';
+import { todosMock } from '../../features/todos/mocks/todo-list';
 
 // les valeurs par défaut du state
 const initialState: TodoListState = {
     data: [],
+    selectedTodo: null,
     loading: false,
     loaded: false
 };
@@ -45,6 +46,12 @@ export const todosReducer = (
                 ...state,
                 data: state.data
                     .map(todo => todo.id === action.payload.id ? action.payload : todo)
+            };
+        // action SelectedTodo
+        case TodoListModule.ActionTypes.SELECTED_TODO:
+            return {
+                ...state,
+                selectedTodo: action.payload
             };
 
         default:

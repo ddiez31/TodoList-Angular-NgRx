@@ -5,7 +5,8 @@
     "paths": {
       "@Store": ["src/app/store/index.ts"],
       "@Actions/*": ["src/app/store/actions/*"],
-      "@Reducers/*": ["src/app/store/reducers/*"]
+      "@Reducers/*": ["src/app/store/reducers/*"],
+      "@Selectors/*": ["src/app/store/selectors/*"],
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
