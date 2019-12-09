@@ -9,7 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodosModule } from './features/todos/todos.module';
 import { getReducers, REDUCER_TOKEN, metaReducers } from './store';
-import { environment } from '../environments/environment';
+import { environment } from '@Env';
 
 @NgModule({
   declarations: [

@@ -8,6 +8,7 @@ const uuidv4 = require('uuid/v4');
 import { TodoListModule } from '@Actions/todo-list.action';
 import { AppState } from '@Store';
 import { Todo } from '../../models/todo';
+import { TodosService } from '../../shared/todos.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -19,7 +20,7 @@ export class TodoListComponent implements OnInit {
   todos$: Observable<Todo[]>;
   public todoForm: FormGroup;
 
-  constructor(private store: Store<AppState>, public fb: FormBuilder, private router: Router) {
+  constructor(private store: Store<AppState>, public fb: FormBuilder, private router: Router, private  todosService: TodosService) {
     this.todos$ = this.store.pipe(select((state) => state.todos.data));
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
@@ -29,7 +30,10 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new TodoListModule.InitTodos());
+    this.todosService.getTodos()
+    .subscribe((todos) => {
+      this.store.dispatch(new TodoListModule.InitTodos(todos));
+    });
   }
 
   addTodo(todo: Todo): void {
