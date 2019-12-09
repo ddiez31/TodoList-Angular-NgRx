@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "@Env": ["src/environments/environment.ts"],
       "@Store": ["src/app/store/index.ts"],
       "@Actions/*": ["src/app/store/actions/*"],
       "@Reducers/*": ["src/app/store/reducers/*"],
