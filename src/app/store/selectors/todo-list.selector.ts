@@ -5,10 +5,10 @@ import { AppState } from '@Store';
 export const selectedTodoListState$ = (state: AppState) =>  state.todos;
 
 // Et à partir de celle-ci, on créer une autre fonction qui renverra data
-export const selectedTodos$ = createSelector(selectedTodoListState$, (todos) =>  todos.data);
+export const selectedTodos$ = createSelector(selectedTodoListState$, (todos) => todos.data);
 
-export  const  selectTodosLoading$ =
-	createSelector(selectedTodoListState$, (todos) =>  todos.loading);
+export const selectTodosLoading$ =
+	createSelector(selectedTodoListState$, (todos) => todos.loading);
 
-export  const  selectTodosLoaded$ =
-	createSelector(selectedTodoListState$, (todos) =>  todos.loaded);
+export const selectTodosLoaded$ =
+	createSelector(selectedTodoListState$, (todos) => todos.loaded);

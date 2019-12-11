@@ -30,13 +30,13 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getTodos();
+    // this.getTodos();
   }
 
   getTodos(): void {
     // this.todosService.getTodos()
     // .subscribe((todos) => {
-      this.store.dispatch(new TodoListModule.LoadInitTodos());
+      // this.store.dispatch(new TodoListModule.LoadInitTodos());
     // });
   }
 

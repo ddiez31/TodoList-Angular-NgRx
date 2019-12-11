@@ -23,7 +23,7 @@ export  class  TodoListEffects {
 		
 		// Si le resolve n'a pas abouti, il passe dans la fonction catchError
 		// Qui renvoie l'action ErrorInitTodos
-		catchError(() => new TodoListModule.ErrorInitTodos())
+		// catchError(() => new TodoListModule.ErrorInitTodos())
 	);
 
 	constructor(
