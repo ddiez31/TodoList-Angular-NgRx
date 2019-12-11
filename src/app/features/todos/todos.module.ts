@@ -19,6 +19,7 @@ import { TodosRoutingModule } from './todos-routing.module';
 import { TodoListComponent } from './pages/todo-list/todo-list.component';
 import { TodoDetailsComponent } from './pages/todo-details/todo-details.component';
 import { TodosService } from './shared/todos.service';
+import { IsTodosLoadedGuard } from './shared/is-todos-loaded.guard';
 
 @NgModule({
   declarations: [TodoListComponent, TodoDetailsComponent],
@@ -38,6 +39,6 @@ import { TodosService } from './shared/todos.service';
     MatButtonModule,
     MatTooltipModule
   ],
-  providers: [TodosService]
+  providers: [TodosService, IsTodosLoadedGuard]
 })
 export class TodosModule { }
