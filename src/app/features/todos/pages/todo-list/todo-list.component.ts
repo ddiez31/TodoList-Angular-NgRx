@@ -30,6 +30,10 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getTodos();
+  }
+
+  getTodos(): void {
     this.todosService.getTodos()
     .subscribe((todos) => {
       this.store.dispatch(new TodoListModule.InitTodos(todos));
@@ -42,7 +46,10 @@ export class TodoListComponent implements OnInit {
       userId: 1,
       id: uuidv4()
     };
-    this.store.dispatch(new TodoListModule.AddTodo(payload));
+    this.todosService.addTodo(payload)
+    .subscribe(() => {
+      this.store.dispatch(new TodoListModule.AddTodo(payload));
+    });
     this.todoForm.reset();
   }
 
@@ -54,7 +61,10 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(todoId: number): void {
     const payload = todoId;
-    this.store.dispatch(new TodoListModule.DeleteTodo(payload));
+    this.todosService.deleteTodo(payload)
+    .subscribe(() => {
+      this.store.dispatch(new TodoListModule.DeleteTodo(payload));
+    });
   }
 
   completeTodo(todo: Todo, status: boolean): void {
@@ -64,7 +74,10 @@ export class TodoListComponent implements OnInit {
       userId: 1,
       id: todo.id
     };
-    this.store.dispatch(new TodoListModule.CompleteTodo(payload));
+    this.todosService.updateTodo(payload)
+    .subscribe(() => {
+      this.store.dispatch(new TodoListModule.CompleteTodo(payload));
+    });
   }
 
 }
