@@ -11,6 +11,8 @@ import {
   MatButtonModule,
   MatTooltipModule
 } from '@angular/material';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryService } from './shared/in-memory.service';
 
 import { ReversePipeModule } from './../../pipes/reverse.module';
 import { TodosRoutingModule } from './todos-routing.module';
@@ -23,6 +25,7 @@ import { TodosService } from './shared/todos.service';
   imports: [
     CommonModule,
     HttpClientModule,
+    HttpClientInMemoryWebApiModule.forRoot(InMemoryService),
     ReactiveFormsModule,
     FormsModule,
     TodosRoutingModule,

@@ -8,6 +8,7 @@
       "@Actions/*": ["src/app/store/actions/*"],
       "@Reducers/*": ["src/app/store/reducers/*"],
       "@Selectors/*": ["src/app/store/selectors/*"],
+      "@Effects/*": ["src/app/store/effects/*"]
     },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
