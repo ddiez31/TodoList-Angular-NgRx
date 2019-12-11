@@ -34,10 +34,10 @@ export class TodoListComponent implements OnInit {
   }
 
   getTodos(): void {
-    this.todosService.getTodos()
-    .subscribe((todos) => {
-      this.store.dispatch(new TodoListModule.InitTodos(todos));
-    });
+    // this.todosService.getTodos()
+    // .subscribe((todos) => {
+      this.store.dispatch(new TodoListModule.LoadInitTodos());
+    // });
   }
 
   addTodo(todo: Todo): void {

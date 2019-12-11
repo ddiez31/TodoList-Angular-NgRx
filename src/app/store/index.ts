@@ -9,6 +9,7 @@ import { environment } from '@Env';
 import { InjectionToken } from '@angular/core';
 
 import { todosReducer } from '@Reducers/todo-list.reducer';
+import { TodoListEffects } from '@Effects/todo-list.effect';
 import { TodoListState } from '../features/todos/models/todo-list-state';
 
 // Le root reducer
@@ -19,6 +20,8 @@ export const reducers: ActionReducerMap<AppState> = {
 export interface AppState {
     todos: TodoListState;
 }
+
+export const appEffects = [TodoListEffects];
 
 // Nécéssaire pour l'AOT
 export const getReducers = () => {

@@ -17,13 +17,29 @@ export const todosReducer = (
 
     switch (action.type) {
         // L'action de InitTodos
-        case TodoListModule.ActionTypes.INIT_TODOS:
+        case TodoListModule.ActionTypes.LOAD_INIT_TODOS:
             return {
                 ...state,
-                data: [
-                    ...action.payload
-                ]
+                loading: true
             };
+
+        case TodoListModule.ActionTypes.SUCCESS_INIT_TODOS:
+            // Bind state.data avec les todos du server
+            // Passe le loaded a true et le loading a false
+            return {
+                ...state,
+                loading: false,
+                loaded: true,
+                data: action.payload
+            };
+
+        case TodoListModule.ActionTypes.ERROR_INIT_TODOS:
+            // Error rend le loading a false
+            return {
+                ...state,
+                loading: false
+            };
+
         // action AddTodo
         case TodoListModule.ActionTypes.ADD_TODO:
             return {
