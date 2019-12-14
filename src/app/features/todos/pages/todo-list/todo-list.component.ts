@@ -9,6 +9,7 @@ import { TodoListModule } from '@Actions/todo-list.action';
 import { AppState } from '@Store';
 import { Todo } from '../../models/todo';
 import { TodosService } from '../../shared/todos.service';
+import { selectedTodoListState$, selectTodosLoading$, selectedTodos$ } from '@Selectors/todo-list.selector';
 
 @Component({
   selector: 'app-todo-list',
@@ -18,10 +19,13 @@ import { TodosService } from '../../shared/todos.service';
 export class TodoListComponent implements OnInit {
 
   todos$: Observable<Todo[]>;
+  public todosLoading: Observable<boolean>;
+  public activeSpinner: boolean;
   public todoForm: FormGroup;
 
-  constructor(private store: Store<AppState>, public fb: FormBuilder, private router: Router, private  todosService: TodosService) {
-    this.todos$ = this.store.pipe(select((state) => state.todos.data));
+  constructor(private store: Store<AppState>, public fb: FormBuilder, private router: Router, private todosService: TodosService) {
+    this.todos$ = this.store.pipe(select(selectedTodos$));
+    this.todosLoading = this.store.pipe(select(selectTodosLoading$));
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
       details: [''],
@@ -30,6 +34,7 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.todosLoading.subscribe((status) => this.activeSpinner = status);
     // this.getTodos();
   }
 
@@ -43,13 +48,12 @@ export class TodoListComponent implements OnInit {
   addTodo(todo: Todo): void {
     const payload = {
       ...todo,
-      userId: 1,
       id: uuidv4()
     };
-    this.todosService.addTodo(payload)
-    .subscribe(() => {
-      this.store.dispatch(new TodoListModule.AddTodo(payload));
-    });
+    // this.todosService.addTodo(payload)
+    // .subscribe(() => {
+    this.store.dispatch(new TodoListModule.LoadAddTodo(payload));
+    // });
     this.todoForm.reset();
   }
 
@@ -61,23 +65,22 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(todoId: number): void {
     const payload = todoId;
-    this.todosService.deleteTodo(payload)
-    .subscribe(() => {
-      this.store.dispatch(new TodoListModule.DeleteTodo(payload));
-    });
+    // this.todosService.deleteTodo(payload)
+    // .subscribe(() => {
+    this.store.dispatch(new TodoListModule.LoadDeleteTodo(payload));
+    // });
   }
 
   completeTodo(todo: Todo, status: boolean): void {
     const payload = {
       ...todo,
       completed: status,
-      userId: 1,
       id: todo.id
     };
-    this.todosService.updateTodo(payload)
-    .subscribe(() => {
-      this.store.dispatch(new TodoListModule.CompleteTodo(payload));
-    });
+    // this.todosService.updateTodo(payload)
+    // .subscribe(() => {
+    this.store.dispatch(new TodoListModule.LoadCompleteTodo(payload));
+    // });
   }
 
 }

@@ -9,7 +9,8 @@ import {
   MatCheckboxModule,
   MatFormFieldModule,
   MatButtonModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryService } from './shared/in-memory.service';
@@ -37,7 +38,8 @@ import { IsTodosLoadedGuard } from './shared/is-todos-loaded.guard';
     MatCheckboxModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatProgressSpinnerModule
   ],
   providers: [TodosService, IsTodosLoadedGuard]
 })
