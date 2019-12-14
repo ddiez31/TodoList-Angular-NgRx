@@ -77,10 +77,10 @@ export class TodoListComponent implements OnInit {
       completed: status,
       id: todo.id
     };
-    this.todosService.updateTodo(payload)
-    .subscribe(() => {
-      this.store.dispatch(new TodoListModule.CompleteTodo(payload));
-    });
+    // this.todosService.updateTodo(payload)
+    // .subscribe(() => {
+    this.store.dispatch(new TodoListModule.LoadCompleteTodo(payload));
+    // });
   }
 
 }

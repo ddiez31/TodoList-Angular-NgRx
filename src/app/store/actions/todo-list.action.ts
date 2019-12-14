@@ -13,7 +13,9 @@ export namespace TodoListModule {
         LOAD_DELETE_TODO = '[todoList] Load Delete Todo',
         SUCCESS_DELETE_TODO = '[todoList] Success Delete Todo',
         ERROR_DELETE_TODO = '[todoList] Error Delete Todo',
-        COMPLETE_TODO = '[todoList] Complete Todo',
+        LOAD_COMPLETE_TODO = '[todoList] Load Complete Todo',
+        SUCCESS_COMPLETE_TODO = '[todoList] Success Complete Todo',
+        ERROR_COMPLETE_TODO = '[todoList] Error Complete Todo',
         SELECTED_TODO = '[todoList] Selected Todo'
     }
 
@@ -58,9 +60,18 @@ export namespace TodoListModule {
         readonly type = ActionTypes.ERROR_DELETE_TODO;
     }
 
-    export class CompleteTodo {
-        readonly type = ActionTypes.COMPLETE_TODO;
+    export class LoadCompleteTodo {
+        readonly type = ActionTypes.LOAD_COMPLETE_TODO;
         constructor(public payload: Todo) { }
+    }
+
+    export class SuccessCompleteTodo {
+        readonly type = ActionTypes.SUCCESS_COMPLETE_TODO;
+        constructor(public payload: Todo) { }
+    }
+
+    export class ErrorCompleteTodo {
+        readonly type = ActionTypes.ERROR_COMPLETE_TODO;
     }
 
     export class SelectedTodo {
@@ -69,9 +80,9 @@ export namespace TodoListModule {
     }
 
     export type Actions =
-    LoadInitTodos | SuccessInitTodos | ErrorInitTodos |
-    LoadAddTodo | SuccessAddTodo | ErrorAddTodo |
-    LoadDeleteTodo | ErrorDeleteTodo | SuccessDeleteTodo |
-    CompleteTodo |
-    SelectedTodo;
+        LoadInitTodos | SuccessInitTodos | ErrorInitTodos |
+        LoadAddTodo | SuccessAddTodo | ErrorAddTodo |
+        LoadDeleteTodo | ErrorDeleteTodo | SuccessDeleteTodo |
+        LoadCompleteTodo | SuccessCompleteTodo | ErrorCompleteTodo |
+        SelectedTodo;
 }

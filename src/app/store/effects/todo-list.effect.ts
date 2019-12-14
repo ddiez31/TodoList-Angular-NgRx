@@ -40,6 +40,14 @@ export  class  TodoListEffects {
 		switchMap(action => this.todosService.deleteTodo(action.payload)),
 		map(todo => new TodoListModule.SuccessDeleteTodo(todo)),
 		catchError(() => of(new TodoListModule.ErrorDeleteTodo()))
+	);	
+
+	@Effect() LoadCompleteTodo$: Observable<TodoListModule.Actions> = this.actions$
+	.pipe(
+		ofType<TodoListModule.LoadCompleteTodo>(TodoListModule.ActionTypes.LOAD_COMPLETE_TODO),
+		switchMap(action => this.todosService.updateTodo(action.payload)),
+		map(todo => new TodoListModule.SuccessCompleteTodo(todo)),
+		catchError(() => of(new TodoListModule.ErrorCompleteTodo()))
 	);
 
 	constructor(

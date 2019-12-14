@@ -86,12 +86,27 @@ export const todosReducer = (
             };
 
         // action CompleteTodo
-        case TodoListModule.ActionTypes.COMPLETE_TODO:
+        case TodoListModule.ActionTypes.LOAD_COMPLETE_TODO:
             return {
                 ...state,
+                loading: true
+            };
+
+        case TodoListModule.ActionTypes.SUCCESS_COMPLETE_TODO:
+            return {
+                ...state,
+                loading: false,
+                loaded: true,
                 data: state.data
                     .map(todo => todo.id === action.payload.id ? action.payload : todo)
             };
+
+        case TodoListModule.ActionTypes.ERROR_COMPLETE_TODO:
+            return {
+                ...state,
+                loading: false
+            };
+
         // action SelectedTodo
         case TodoListModule.ActionTypes.SELECTED_TODO:
             return {

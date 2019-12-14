@@ -22,7 +22,7 @@ export class TodosService {
   }
 
   updateTodo(todo: Todo): Observable<Todo> {
-    return this.http.put<Todo>(`${environment.apiUrl}/${this.endpointList}/${todo.id}`, todo);
+    return this.http.put<Todo>(`${environment.apiUrl}/${this.endpointList}/${todo.id}`, todo).pipe(map(response => todo));
   }
 
   deleteTodo(todoId: number): Observable<number> {
