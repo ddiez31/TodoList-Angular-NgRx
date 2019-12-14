@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { TodoListModule } from '@Actions/todo-list.action';
 import { TodosService } from './../../features/todos/shared/todos.service';
@@ -24,6 +24,14 @@ export  class  TodoListEffects {
 		// Si le resolve n'a pas abouti, il passe dans la fonction catchError
 		// Qui renvoie l'action ErrorInitTodos
 		// catchError(() => new TodoListModule.ErrorInitTodos())
+	);
+
+	@Effect() LoadAddTodo$: Observable<TodoListModule.Actions> = this.actions$
+	.pipe(
+		ofType<TodoListModule.LoadAddTodo>(TodoListModule.ActionTypes.LOAD_ADD_TODO),
+		switchMap(action => this.todosService.addTodo(action.payload)),
+		map(todo => new TodoListModule.SuccessAddTodo(todo)),
+		catchError(() => of(new TodoListModule.ErrorInitTodos()))
 	);
 
 	constructor(

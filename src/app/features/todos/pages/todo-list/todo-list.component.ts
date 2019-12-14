@@ -24,7 +24,7 @@ export class TodoListComponent implements OnInit {
   public todoForm: FormGroup;
 
   constructor(private store: Store<AppState>, public fb: FormBuilder, private router: Router, private todosService: TodosService) {
-    this.todos$ = this.store.pipe(select((state) => state.todos.data));
+    this.todos$ = this.store.pipe(select(selectedTodos$));
     this.todosLoading = this.store.pipe(select(selectTodosLoading$));
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
@@ -50,10 +50,10 @@ export class TodoListComponent implements OnInit {
       ...todo,
       id: uuidv4()
     };
-    this.todosService.addTodo(payload)
-    .subscribe(() => {
-      this.store.dispatch(new TodoListModule.AddTodo(payload));
-    });
+    // this.todosService.addTodo(payload)
+    // .subscribe(() => {
+    this.store.dispatch(new TodoListModule.LoadAddTodo(payload));
+    // });
     this.todoForm.reset();
   }
 

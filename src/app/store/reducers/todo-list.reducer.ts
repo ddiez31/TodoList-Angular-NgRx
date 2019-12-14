@@ -41,14 +41,27 @@ export const todosReducer = (
             };
 
         // action AddTodo
-        case TodoListModule.ActionTypes.ADD_TODO:
+        case TodoListModule.ActionTypes.LOAD_ADD_TODO:
             return {
                 ...state,
+                loading: true
+            };       
+             case TodoListModule.ActionTypes.SUCCESS_ADD_TODO:
+            return {
+                ...state,
+                loading: false,
+                loaded: true,
                 data: [
                     ...state.data,
                     action.payload
                 ]
+            };       
+             case TodoListModule.ActionTypes.ERROR_ADD_TODO:
+            return {
+                ...state,
+                loading: false
             };
+
         // action DeleteTodo
         case TodoListModule.ActionTypes.DELETE_TODO:
             return {
