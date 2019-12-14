@@ -33,13 +33,6 @@ export const todosReducer = (
                 data: action.payload
             };
 
-        case TodoListModule.ActionTypes.ERROR_INIT_TODOS:
-            // Error rend le loading a false
-            return {
-                ...state,
-                loading: false
-            };
-
         // action AddTodo
         case TodoListModule.ActionTypes.LOAD_ADD_TODO:
             return {
@@ -58,12 +51,6 @@ export const todosReducer = (
                 ]
             };
 
-        case TodoListModule.ActionTypes.ERROR_ADD_TODO:
-            return {
-                ...state,
-                loading: false
-            };
-
         // action DeleteTodo
         case TodoListModule.ActionTypes.LOAD_DELETE_TODO:
             return {
@@ -77,12 +64,6 @@ export const todosReducer = (
                 loading: false,
                 loaded: true,
                 data: state.data.filter(todo => todo.id !== action.payload)
-            };
-
-        case TodoListModule.ActionTypes.ERROR_DELETE_TODO:
-            return {
-                ...state,
-                loading: false
             };
 
         // action CompleteTodo
@@ -101,7 +82,7 @@ export const todosReducer = (
                     .map(todo => todo.id === action.payload.id ? action.payload : todo)
             };
 
-        case TodoListModule.ActionTypes.ERROR_COMPLETE_TODO:
+        case TodoListModule.ActionTypes.ERROR_LOAD_ACTION:
             return {
                 ...state,
                 loading: false
