@@ -45,8 +45,9 @@ export const todosReducer = (
             return {
                 ...state,
                 loading: true
-            };       
-             case TodoListModule.ActionTypes.SUCCESS_ADD_TODO:
+            };
+
+        case TodoListModule.ActionTypes.SUCCESS_ADD_TODO:
             return {
                 ...state,
                 loading: false,
@@ -55,19 +56,35 @@ export const todosReducer = (
                     ...state.data,
                     action.payload
                 ]
-            };       
-             case TodoListModule.ActionTypes.ERROR_ADD_TODO:
+            };
+
+        case TodoListModule.ActionTypes.ERROR_ADD_TODO:
             return {
                 ...state,
                 loading: false
             };
 
         // action DeleteTodo
-        case TodoListModule.ActionTypes.DELETE_TODO:
+        case TodoListModule.ActionTypes.LOAD_DELETE_TODO:
             return {
                 ...state,
+                loading: true
+            };
+
+        case TodoListModule.ActionTypes.SUCCESS_DELETE_TODO:
+            return {
+                ...state,
+                loading: false,
+                loaded: true,
                 data: state.data.filter(todo => todo.id !== action.payload)
             };
+
+        case TodoListModule.ActionTypes.ERROR_DELETE_TODO:
+            return {
+                ...state,
+                loading: false
+            };
+
         // action CompleteTodo
         case TodoListModule.ActionTypes.COMPLETE_TODO:
             return {

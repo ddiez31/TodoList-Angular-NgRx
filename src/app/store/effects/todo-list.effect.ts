@@ -23,7 +23,7 @@ export  class  TodoListEffects {
 		
 		// Si le resolve n'a pas abouti, il passe dans la fonction catchError
 		// Qui renvoie l'action ErrorInitTodos
-		// catchError(() => new TodoListModule.ErrorInitTodos())
+		catchError(() => of(new TodoListModule.ErrorInitTodos()))
 	);
 
 	@Effect() LoadAddTodo$: Observable<TodoListModule.Actions> = this.actions$
@@ -31,7 +31,15 @@ export  class  TodoListEffects {
 		ofType<TodoListModule.LoadAddTodo>(TodoListModule.ActionTypes.LOAD_ADD_TODO),
 		switchMap(action => this.todosService.addTodo(action.payload)),
 		map(todo => new TodoListModule.SuccessAddTodo(todo)),
-		catchError(() => of(new TodoListModule.ErrorInitTodos()))
+		catchError(() => of(new TodoListModule.ErrorAddTodo()))
+	);	
+	
+	@Effect() LoadDeleteTodo$: Observable<TodoListModule.Actions> = this.actions$
+	.pipe(
+		ofType<TodoListModule.LoadDeleteTodo>(TodoListModule.ActionTypes.LOAD_DELETE_TODO),
+		switchMap(action => this.todosService.deleteTodo(action.payload)),
+		map(todo => new TodoListModule.SuccessDeleteTodo(todo)),
+		catchError(() => of(new TodoListModule.ErrorDeleteTodo()))
 	);
 
 	constructor(

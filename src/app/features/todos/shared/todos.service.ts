@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@Env';
 import { Todo } from '../models/todo';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,7 @@ export class TodosService {
   }
 
   deleteTodo(todoId: number): Observable<number> {
-    return this.http.delete<number>(`${environment.apiUrl}/${this.endpointList}/${todoId}`);
+    return this.http.delete<number>(`${environment.apiUrl}/${this.endpointList}/${todoId}`).pipe(map(response => todoId));
   }
 
 }

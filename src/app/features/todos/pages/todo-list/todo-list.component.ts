@@ -65,10 +65,10 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(todoId: number): void {
     const payload = todoId;
-    this.todosService.deleteTodo(payload)
-    .subscribe(() => {
-      this.store.dispatch(new TodoListModule.DeleteTodo(payload));
-    });
+    // this.todosService.deleteTodo(payload)
+    // .subscribe(() => {
+    this.store.dispatch(new TodoListModule.LoadDeleteTodo(payload));
+    // });
   }
 
   completeTodo(todo: Todo, status: boolean): void {
