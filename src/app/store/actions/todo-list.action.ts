@@ -22,7 +22,7 @@ export namespace TodoListModule {
     }
     
     export  class  ErrorInitTodos {
-        readonly type = ActionTypes.ERROR_INIT_TODOS
+        readonly type = ActionTypes.ERROR_INIT_TODOS;
     }
 
     export class AddTodo {

@@ -9,6 +9,7 @@ import { TodoListModule } from '@Actions/todo-list.action';
 import { AppState } from '@Store';
 import { Todo } from '../../models/todo';
 import { TodosService } from '../../shared/todos.service';
+import { selectedTodoListState$, selectTodosLoading$, selectedTodos$ } from '@Selectors/todo-list.selector';
 
 @Component({
   selector: 'app-todo-list',
@@ -18,10 +19,13 @@ import { TodosService } from '../../shared/todos.service';
 export class TodoListComponent implements OnInit {
 
   todos$: Observable<Todo[]>;
+  public todosLoading: Observable<boolean>;
+  public activeSpinner: boolean;
   public todoForm: FormGroup;
 
-  constructor(private store: Store<AppState>, public fb: FormBuilder, private router: Router, private  todosService: TodosService) {
+  constructor(private store: Store<AppState>, public fb: FormBuilder, private router: Router, private todosService: TodosService) {
     this.todos$ = this.store.pipe(select((state) => state.todos.data));
+    this.todosLoading = this.store.pipe(select(selectTodosLoading$));
     this.todoForm = this.fb.group({
       title: ['', Validators.required],
       details: [''],
@@ -30,6 +34,7 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.todosLoading.subscribe((status) => this.activeSpinner = status);
     // this.getTodos();
   }
 
@@ -43,7 +48,6 @@ export class TodoListComponent implements OnInit {
   addTodo(todo: Todo): void {
     const payload = {
       ...todo,
-      userId: 1,
       id: uuidv4()
     };
     this.todosService.addTodo(payload)
@@ -71,7 +75,6 @@ export class TodoListComponent implements OnInit {
     const payload = {
       ...todo,
       completed: status,
-      userId: 1,
       id: todo.id
     };
     this.todosService.updateTodo(payload)
