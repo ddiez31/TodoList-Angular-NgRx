@@ -22,7 +22,7 @@ export namespace TodoListModule {
 
     export  class  SuccessInitTodos {
         readonly type = ActionTypes.SUCCESS_INIT_TODOS;
-        constructor(public payload: Todo[]){}
+        constructor(public payload: Todo[]) { }
     }
 
     export class LoadAddTodo {

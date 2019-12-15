@@ -2,7 +2,7 @@ import { TodoListModule } from '@Actions/todo-list.action';
 import { TodoListState } from '../../features/todos/models/todo-list-state';
 
 // les valeurs par défaut du state
-const initialState: TodoListState = {
+export const initialState: TodoListState = {
     data: [],
     selectedTodo: null,
     loading: false,
@@ -98,4 +98,4 @@ export const todosReducer = (
         default:
             return state;
     }
-}
+};
