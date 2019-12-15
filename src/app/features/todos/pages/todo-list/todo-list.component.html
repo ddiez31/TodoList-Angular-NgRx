@@ -5,10 +5,8 @@
   <mat-form-field floatLabel="auto" class="infos">
     <textarea matInput formControlName="details" placeholder="Description"></textarea>
   </mat-form-field>
-  <!-- <mat-checkbox class="checkboxCompleted" formControlName="completed" labelPosition="before">
-    Completed
-  </mat-checkbox> -->
-  <button mat-icon-button color="primary" class="btnAdd" matTooltip="Add todo" matTooltipPosition="above">
+  <button mat-icon-button color="primary" class="btnAdd" matTooltip="Add todo" matTooltipPosition="above"
+    [disabled]="f.title.errors">
     <mat-icon>add_circle</mat-icon>
   </button>
 </form>

@@ -27,14 +27,14 @@ export class TodoListComponent implements OnInit {
     this.todos$ = this.store.pipe(select(selectedTodos$));
     this.todosLoading = this.store.pipe(select(selectTodosLoading$));
     this.todoForm = this.fb.group({
-      title: ['', Validators.required],
-      details: [''],
+      title: ['', [Validators.required, Validators.minLength(3)]],
+      details: ['', Validators.minLength(6)],
       completed: [false]
     });
   }
 
   ngOnInit(): void {
-    this.todosLoading.subscribe((status) => this.activeSpinner = status);
+   this.todosLoading.subscribe((status) => this.activeSpinner = status);
     // this.getTodos();
   }
 
@@ -45,7 +45,15 @@ export class TodoListComponent implements OnInit {
     // });
   }
 
+  // convenience getter for easy access to form fields
+  get f(): any {
+    return this.todoForm.controls;
+  }
+
   addTodo(todo: Todo): void {
+    if (this.todoForm.invalid) {
+      return;
+    }
     const payload = {
       ...todo,
       id: uuidv4()
