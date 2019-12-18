@@ -1,6 +1,8 @@
+// Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Services
 import { ReversePipe } from './reverse.pipe';
 
 @NgModule({

@@ -1,7 +1,10 @@
+// Modules
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+
+// Services
 import { AppState } from '@Store';
 import { selectedTodoListState$ } from '@Selectors/todo-list.selector';
 import { TodoListState } from '../../models/todo-list-state';
@@ -17,8 +20,7 @@ export class TodoDetailsComponent implements OnInit {
   public selectedTodo: Todo;
 
   constructor(private store: Store<AppState>) {
-
-    // On remplace la fonction par le sélecteur
+    // Get data with selector
     this.selectedTodo$ = this.store.pipe(select(selectedTodoListState$),
     tap(data => {
       this.selectedTodo = data.selectedTodo;

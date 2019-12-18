@@ -6,11 +6,7 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     redirectTo: 'todo-list'
-  },
-  // {
-  //   path: '**',
-  //   redirectTo: 'todo-list'
-  // }
+  }
 ];
 
 @NgModule({

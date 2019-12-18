@@ -1,9 +1,13 @@
+// Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
+// Components
 import { TodoListComponent } from './pages/todo-list/todo-list.component';
 import { TodoDetailsComponent } from './pages/todo-details/todo-details.component';
+
+// Services
 import { IsTodosLoadedGuard } from './shared/is-todos-loaded.guard';
 
 const routes: Routes = [

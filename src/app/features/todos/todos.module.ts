@@ -1,3 +1,4 @@
+// Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -13,14 +14,17 @@ import {
   MatProgressSpinnerModule
 } from '@angular/material';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryService } from './shared/in-memory.service';
-
 import { ReversePipeModule } from './../../pipes/reverse.module';
 import { TodosRoutingModule } from './todos-routing.module';
-import { TodoListComponent } from './pages/todo-list/todo-list.component';
-import { TodoDetailsComponent } from './pages/todo-details/todo-details.component';
+
+// Services
+import { InMemoryService } from './shared/in-memory.service';
 import { TodosService } from './shared/todos.service';
 import { IsTodosLoadedGuard } from './shared/is-todos-loaded.guard';
+
+// Components
+import { TodoListComponent } from './pages/todo-list/todo-list.component';
+import { TodoDetailsComponent } from './pages/todo-details/todo-details.component';
 
 @NgModule({
   declarations: [TodoListComponent, TodoDetailsComponent],

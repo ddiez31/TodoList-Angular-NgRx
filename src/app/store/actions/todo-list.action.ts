@@ -16,11 +16,11 @@ export namespace TodoListModule {
         SELECTED_TODO = '[todoList] Selected Todo'
     }
 
-    export  class  LoadInitTodos {
+    export class LoadInitTodos {
         readonly type = ActionTypes.LOAD_INIT_TODOS;
     }
 
-    export  class  SuccessInitTodos {
+    export class SuccessInitTodos {
         readonly type = ActionTypes.SUCCESS_INIT_TODOS;
         constructor(public payload: Todo[]) { }
     }

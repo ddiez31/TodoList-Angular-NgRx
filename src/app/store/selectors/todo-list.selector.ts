@@ -1,12 +1,24 @@
 import { createSelector } from '@ngrx/store';
 import { AppState } from '@Store';
 
-// La première fonction amène vers le state todos
-export const selectedTodoListState$ = (state: AppState) =>  state.todos;
+/**
+ * Get state of todos
+ */
+export const selectedTodoListState$ = (state: AppState) => state.todos;
 
-// Et à partir de celle-ci, on créer une autre fonction qui renverra data
-export const selectedTodos$ = createSelector(selectedTodoListState$, (todos) => todos.data);
+/**
+ * Get data state of todos
+ */
+export const selectedTodos$ = createSelector(selectedTodoListState$, (todos) =>
+    todos.data.filter((todo) => todo.completed).concat(todos.data.filter((todo) => !todo.completed))
+);
 
+/**
+ * Get is loading status
+ */
 export const selectTodosLoading$ = createSelector(selectedTodoListState$, (todos) => todos.loading);
 
+/**
+ * Get is loaded status
+ */
 export const selectTodosLoaded$ = createSelector(selectedTodoListState$, (todos) => todos.loaded);

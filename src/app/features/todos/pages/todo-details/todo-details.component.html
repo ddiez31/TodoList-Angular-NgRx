@@ -1,18 +1,20 @@
-<button mat-icon-button color="primary" [routerLink]="['/']" class="btnBack" matTooltip="Return to list"
-  matTooltipPosition="above">
-  <mat-icon>arrow_back</mat-icon>
-</button>
+<div id="todoDetailsPage">
+  <button mat-icon-button color="primary" [routerLink]="['/']" class="btnBack" matTooltip="Return to list"
+    matTooltipPosition="above">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
 
-<mat-action-list class="selectedTodo">
-  <mat-form-field class="title">
-    <label>Title</label>
-    <input matInput [value]="selectedTodo.title" readonly>
-  </mat-form-field>
-  <mat-form-field *ngIf="selectedTodo.details" class="infos">
-    <label>Details</label>
-    <textarea matInput [value]="selectedTodo.details" readonly></textarea>
-  </mat-form-field>
-  <mat-checkbox class="checkboxCompleted" [checked]="selectedTodo.completed" labelPosition="before" disabled>
-    Completed
-  </mat-checkbox>
-</mat-action-list>
+  <mat-action-list class="selectedTodo">
+    <div class="title">
+      <h3>Title</h3>
+      <p>{{ selectedTodo.title }}</p>
+    </div>
+    <div *ngIf="selectedTodo.details" class="infos">
+      <h3>Details</h3>
+      <p>{{ selectedTodo.details }}</p>
+    </div>
+    <mat-checkbox class="checkboxCompleted" [checked]="selectedTodo.completed" labelPosition="before" disabled>
+      Completed
+    </mat-checkbox>
+  </mat-action-list>
+</div>
