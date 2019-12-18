@@ -32,5 +32,12 @@
         <mat-icon>remove_circle</mat-icon>
       </button>
     </mat-action-list>
+    <div class="filter">
+      <button mat-raised-button color="basic" class="btnFilter" (click)="setFilter('all')">Show all</button>
+      <button mat-raised-button color="basic" class="btnFilter" (click)="setFilter('completed')">Show completed</button>
+      <button mat-raised-button color="basic" class="btnFilter" (click)="setFilter('active')">Show active</button>
+    </div>
   </div>
+
+
 </div>
