@@ -14,6 +14,20 @@ export const selectedTodos$ = createSelector(selectedTodoListState$, (todos) =>
 );
 
 /**
+ * Get completed todos
+ */
+export const completedTodos$ = createSelector(selectedTodoListState$, (todos) =>
+    todos.data.filter((todo) => todo.completed)
+);
+
+/**
+ * Get active todos
+ */
+export const activeTodos$ = createSelector(selectedTodoListState$, (todos) =>
+    todos.data.filter((todo) => !todo.completed)
+);
+
+/**
  * Get is loading status
  */
 export const selectTodosLoading$ = createSelector(selectedTodoListState$, (todos) => todos.loading);

@@ -10,8 +10,7 @@ import { TodoListModule } from '@Actions/todo-list.action';
 // Services
 import { AppState } from '@Store';
 import { Todo } from '../../models/todo';
-import { TodosService } from '../../shared/todos.service';
-import { selectTodosLoading$, selectedTodos$ } from '@Selectors/todo-list.selector';
+import { selectTodosLoading$, selectedTodos$, completedTodos$, activeTodos$ } from '@Selectors/todo-list.selector';
 
 @Component({
   selector: 'app-todo-list',
@@ -106,6 +105,28 @@ export class TodoListComponent implements OnInit {
       id: todo.id
     };
     this.store.dispatch(new TodoListModule.LoadCompleteTodo(payload));
+  }
+
+  /**
+   * Filter todos
+   *
+   * @param {string} filter
+   * @memberof TodoListComponent
+   */
+  setFilter(filter: string): void {
+    switch (filter) {
+      case 'all':
+        this.todos$ = this.store.pipe(select(selectedTodos$));
+        break;
+      case 'completed':
+        this.todos$ = this.store.pipe(select(selectedTodos$));
+        this.todos$ = this.store.pipe(select(completedTodos$));
+        break;
+      case 'active':
+        this.todos$ = this.store.pipe(select(selectedTodos$));
+        this.todos$ = this.store.pipe(select(activeTodos$));
+        break;
+    }
   }
 
 }
