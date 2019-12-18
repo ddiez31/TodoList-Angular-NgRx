@@ -37,10 +37,20 @@
     .checkboxCompleted {
       padding: 0 1rem;
     }
+
+    .filter {
+      text-align: center;
+      padding: 1rem;
+
+      .btnFilter {
+        margin: 1rem;
+      }
+    }
   }
 
   .loader {
     position: absolute;
     left: 50%;
   }
+
 }
