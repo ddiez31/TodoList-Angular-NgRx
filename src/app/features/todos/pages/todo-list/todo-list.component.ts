@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Store, select } from '@ngrx/store';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 const uuidv4 = require('uuid/v4');
 
 import { TodoListModule } from '@Actions/todo-list.action';
 import { AppState } from '@Store';
 import { Todo } from '../../models/todo';
 import { TodosService } from '../../shared/todos.service';
-import { selectedTodoListState$, selectTodosLoading$, selectedTodos$ } from '@Selectors/todo-list.selector';
+import { selectTodosLoading$, selectedTodos$ } from '@Selectors/todo-list.selector';
 
 @Component({
   selector: 'app-todo-list',
@@ -17,6 +17,7 @@ import { selectedTodoListState$, selectTodosLoading$, selectedTodos$ } from '@Se
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
+  @ViewChild('formDirective', {static: true}) private formDirective: NgForm;
 
   todos$: Observable<Todo[]>;
   public todosLoading: Observable<boolean>;
@@ -35,14 +36,6 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit(): void {
    this.todosLoading.subscribe((status) => this.activeSpinner = status);
-    // this.getTodos();
-  }
-
-  getTodos(): void {
-    // this.todosService.getTodos()
-    // .subscribe((todos) => {
-      // this.store.dispatch(new TodoListModule.LoadInitTodos());
-    // });
   }
 
   // convenience getter for easy access to form fields
@@ -58,11 +51,8 @@ export class TodoListComponent implements OnInit {
       ...todo,
       id: uuidv4()
     };
-    // this.todosService.addTodo(payload)
-    // .subscribe(() => {
     this.store.dispatch(new TodoListModule.LoadAddTodo(payload));
-    // });
-    this.todoForm.reset();
+    this.formDirective.resetForm();
   }
 
   showTodo(todo: Todo): void {
@@ -73,10 +63,7 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(todoId: number): void {
     const payload = todoId;
-    // this.todosService.deleteTodo(payload)
-    // .subscribe(() => {
     this.store.dispatch(new TodoListModule.LoadDeleteTodo(payload));
-    // });
   }
 
   completeTodo(todo: Todo, status: boolean): void {
@@ -85,10 +72,7 @@ export class TodoListComponent implements OnInit {
       completed: status,
       id: todo.id
     };
-    // this.todosService.updateTodo(payload)
-    // .subscribe(() => {
     this.store.dispatch(new TodoListModule.LoadCompleteTodo(payload));
-    // });
   }
 
 }

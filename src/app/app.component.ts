@@ -7,7 +7,7 @@ import { OnInit, Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'TodoList-Angular-NgRx';
+  title = 'TodoList with';
 
   constructor() {
   }
