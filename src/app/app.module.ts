@@ -1,14 +1,17 @@
+// Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { TodosModule } from './features/todos/todos.module';
+
+// Components
+import { AppComponent } from './app.component';
+
+// Services
 import { appEffects, getReducers, REDUCER_TOKEN, metaReducers } from './store';
 import { environment } from '@Env';
 
