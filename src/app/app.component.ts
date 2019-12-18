@@ -1,10 +1,18 @@
-import { Component } from '@angular/core';
+import { OnInit, Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'TodoList-Angular-NgRx';
+export class AppComponent implements OnInit {
+  title = 'TodoList';
+
+  constructor() {
+  }
+
+  ngOnInit(): void {
+  }
+
+
 }

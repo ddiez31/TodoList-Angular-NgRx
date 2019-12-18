@@ -1,5 +1,5 @@
 {
-  "name": "todo-list-angular-ng-rx",
+  "name": "todolist-angular-ngrx",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -21,10 +21,13 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@ngrx/effects": "^8.5.2",
     "@ngrx/store": "^8.5.2",
+    "@ngrx/store-devtools": "^8.5.2",
     "hammerjs": "^2.0.8",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
+    "uuid": "^3.3.3",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {

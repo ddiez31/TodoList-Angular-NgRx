@@ -2,6 +2,14 @@
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
+    "paths": {
+      "@Env": ["src/environments/environment.ts"],
+      "@Store": ["src/app/store/index.ts"],
+      "@Actions/*": ["src/app/store/actions/*"],
+      "@Reducers/*": ["src/app/store/reducers/*"],
+      "@Selectors/*": ["src/app/store/selectors/*"],
+      "@Effects/*": ["src/app/store/effects/*"]
+    },
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -11,6 +19,7 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
+    "types": ["node"],
     "typeRoots": [
       "node_modules/@types"
     ],
