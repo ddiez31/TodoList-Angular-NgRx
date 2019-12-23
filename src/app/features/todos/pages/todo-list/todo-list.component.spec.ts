@@ -1,4 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import {
+  MatListModule,
+  MatIconModule,
+  MatInputModule,
+  MatCheckboxModule,
+  MatFormFieldModule,
+  MatButtonModule,
+  MatTooltipModule,
+  MatProgressSpinnerModule
+} from '@angular/material';
+import { ReversePipeModule } from 'src/app/pipes/reverse.module';
+import { Store } from '@ngrx/store';
 
 import { TodoListComponent } from './todo-list.component';
 
@@ -8,7 +22,27 @@ describe('TodoListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TodoListComponent ]
+      declarations: [TodoListComponent],
+      imports: [
+        ReactiveFormsModule,
+        MatFormFieldModule,
+        MatIconModule,
+        MatProgressSpinnerModule,
+        MatCheckboxModule,
+        MatListModule,
+        MatFormFieldModule,
+        MatButtonModule,
+        MatTooltipModule,
+        MatInputModule,
+        ReversePipeModule,
+        RouterTestingModule
+      ],
+      providers: [
+        {
+          provide: Store,
+          useValue: jasmine.createSpyObj('Store', ['pipe'])
+        }
+      ]
     })
     .compileComponents();
   }));
