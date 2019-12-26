@@ -22,12 +22,12 @@ export class TodoDetailsComponent implements OnInit {
   constructor(private store: Store<AppState>) {
     // Get data with selector
     this.selectedTodo$ = this.store.pipe(select(selectedTodoListState$),
-    tap(data => {
-      this.selectedTodo = data.selectedTodo;
-    }));
+      tap(data => {
+        this.selectedTodo = data.selectedTodo;
+      }));
 
     this.selectedTodo$.subscribe();
-   }
+  }
 
   ngOnInit(): void {
   }

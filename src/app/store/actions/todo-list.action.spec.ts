@@ -8,7 +8,7 @@ describe('Todos actions', () => {
             it('should create an action', () => {
                 const action = new TodoListModule.LoadInitTodos();
                 // Avoid error message { ...action }
-                expect({...action}).toEqual({
+                expect({ ...action }).toEqual({
                     type: TodoListModule.ActionTypes.LOAD_INIT_TODOS
                 });
             });
@@ -21,7 +21,7 @@ describe('Todos actions', () => {
                 ];
                 const action = new TodoListModule.SuccessInitTodos(payload);
                 // Avoid error message { ...action }
-                expect({...action}).toEqual({
+                expect({ ...action }).toEqual({
                     type: TodoListModule.ActionTypes.SUCCESS_INIT_TODOS,
                     payload
                 });
@@ -33,10 +33,10 @@ describe('Todos actions', () => {
         describe('LoadAddTodo', () => {
             it('should create an action', () => {
 
-                const payload: Todo = { id: 1, title: 'for testing 1', completed: true };
+                const payload: Todo = { id: 1, title: 'for testing 1', completed: true, details: 'details for testing 1' };
                 const action = new TodoListModule.LoadAddTodo(payload);
 
-                expect({...action}).toEqual({
+                expect({ ...action }).toEqual({
                     type: TodoListModule.ActionTypes.LOAD_ADD_TODO,
                     payload
                 });
@@ -46,10 +46,10 @@ describe('Todos actions', () => {
         describe('SuccessAddTodo', () => {
             it('should create an action', () => {
 
-                const payload: Todo = { id: 1,  title: 'for testing 1', completed: true };
+                const payload: Todo = { id: 1, title: 'for testing 1', completed: true, details: 'details for testing 1' };
                 const action = new TodoListModule.SuccessAddTodo(payload);
 
-                expect({...action}).toEqual({
+                expect({ ...action }).toEqual({
                     type: TodoListModule.ActionTypes.SUCCESS_ADD_TODO,
                     payload
                 });
@@ -61,10 +61,10 @@ describe('Todos actions', () => {
         describe('SelectedTodo', () => {
             it('should create an action', () => {
 
-                const payload: Todo = { id: 1, title: 'for testing 1', completed: true };
+                const payload: Todo = { id: 1, title: 'for testing 1', completed: true, details: 'details for testing 1' };
                 const action = new TodoListModule.SelectedTodo(payload);
 
-                expect({...action}).toEqual({
+                expect({ ...action }).toEqual({
                     type: TodoListModule.ActionTypes.SELECTED_TODO,
                     payload
                 });
@@ -76,10 +76,10 @@ describe('Todos actions', () => {
         describe('LoadCompleteTodo', () => {
             it('should create an action', () => {
 
-                const payload: Todo = { id: 1, title: 'for testing 1', completed: true };
+                const payload: Todo = { id: 1, title: 'for testing 1', completed: true, details: 'details for testing 1' };
                 const action = new TodoListModule.LoadCompleteTodo(payload);
 
-                expect({...action}).toEqual({
+                expect({ ...action }).toEqual({
                     type: TodoListModule.ActionTypes.LOAD_COMPLETE_TODO,
                     payload
                 });
@@ -89,10 +89,10 @@ describe('Todos actions', () => {
         describe('SuccessCompleteTodo', () => {
             it('should create an action', () => {
 
-                const payload: Todo = { id: 1,  title: 'for testing 1', completed: true };
+                const payload: Todo = { id: 1, title: 'for testing 1', completed: true, details: 'details for testing 1' };
                 const action = new TodoListModule.SuccessCompleteTodo(payload);
 
-                expect({...action}).toEqual({
+                expect({ ...action }).toEqual({
                     type: TodoListModule.ActionTypes.SUCCESS_COMPLETE_TODO,
                     payload
                 });
@@ -107,7 +107,7 @@ describe('Todos actions', () => {
                 const payload = 1;
                 const action = new TodoListModule.LoadDeleteTodo(payload);
 
-                expect({...action}).toEqual({
+                expect({ ...action }).toEqual({
                     type: TodoListModule.ActionTypes.LOAD_DELETE_TODO,
                     payload
                 });
@@ -120,7 +120,7 @@ describe('Todos actions', () => {
                 const payload = 1;
                 const action = new TodoListModule.SuccessDeleteTodo(payload);
 
-                expect({...action}).toEqual({
+                expect({ ...action }).toEqual({
                     type: TodoListModule.ActionTypes.SUCCESS_DELETE_TODO,
                     payload
                 });

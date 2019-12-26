@@ -13,6 +13,7 @@ import {
 } from '@angular/material';
 import { ReversePipeModule } from 'src/app/pipes/reverse.module';
 import { Store } from '@ngrx/store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TodoListComponent } from './todo-list.component';
 
@@ -35,7 +36,8 @@ describe('TodoListComponent', () => {
         MatTooltipModule,
         MatInputModule,
         ReversePipeModule,
-        RouterTestingModule
+        RouterTestingModule,
+        BrowserAnimationsModule
       ],
       providers: [
         {
@@ -44,7 +46,7 @@ describe('TodoListComponent', () => {
         }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -56,4 +58,5 @@ describe('TodoListComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
