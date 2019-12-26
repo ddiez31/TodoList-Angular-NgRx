@@ -18,17 +18,17 @@ import { selectTodosLoading$, selectedTodos$, completedTodos$, activeTodos$ } fr
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  @ViewChild('formDirective', {static: true}) private formDirective: NgForm;
+  @ViewChild('formDirective', { static: true }) private formDirective: NgForm;
 
-  todos$: Observable<Todo[]>;
-  public todosLoading: Observable<boolean>;
+  public todos$: Observable<Todo[]>;
+  public todosLoading$: Observable<boolean>;
   public activeSpinner: boolean;
   public todoForm: FormGroup;
 
   constructor(private store: Store<AppState>, public fb: FormBuilder, private router: Router) {
     // Get data with selector
     this.todos$ = this.store.pipe(select(selectedTodos$));
-    this.todosLoading = this.store.pipe(select(selectTodosLoading$));
+    this.todosLoading$ = this.store.pipe(select(selectTodosLoading$));
     this.todoForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       details: ['', Validators.minLength(6)],
@@ -37,7 +37,7 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todosLoading.subscribe((status) => this.activeSpinner = status);
+    this.todosLoading$.subscribe((status) => this.activeSpinner = status);
   }
 
   /**
