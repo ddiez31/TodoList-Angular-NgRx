@@ -1,7 +1,7 @@
 import { TodoListModule } from '@Actions/todo-list.action';
 import { TodoListState } from '../../features/todos/models/todo-list-state';
 
-const initialState: TodoListState = {
+export const initialState: TodoListState = {
     data: [],
     selectedTodo: null,
     loading: false,
